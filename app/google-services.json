@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "547958651995",
+    "project_id": "caloriecounterapp-997cd",
+    "storage_bucket": "caloriecounterapp-997cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547958651995:android:b2feb219f92ee128bed37e",
+        "android_client_info": {
+          "package_name": "com.meetozan.caloriecounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547958651995-3ldd1eanpbdt5uc0l088h4kv0dj4iubv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQn4Smf5jqfNvqHkLmBvNSh5AZKyqEOho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547958651995-3ldd1eanpbdt5uc0l088h4kv0dj4iubv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547958651995:android:90dd9bcb15e75093bed37e",
+        "android_client_info": {
+          "package_name": "com.meetozan.caloriecounterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547958651995-3ldd1eanpbdt5uc0l088h4kv0dj4iubv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQn4Smf5jqfNvqHkLmBvNSh5AZKyqEOho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547958651995-3ldd1eanpbdt5uc0l088h4kv0dj4iubv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
