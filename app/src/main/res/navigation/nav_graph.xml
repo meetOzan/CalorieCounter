@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/addMealFragment"
+        android:name="com.meetozan.caloriecounter.AddMealFragment"
+        android:label="fragment_add_meal"
+        tools:layout="@layout/fragment_add_meal" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.meetozan.caloriecounter.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/foodsFragment"
+        android:name="com.meetozan.caloriecounter.FoodsFragment"
+        android:label="fragment_foods"
+        tools:layout="@layout/fragment_foods" />
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.meetozan.caloriecounter.LeaderboardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.meetozan.caloriecounter.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_addMealFragment"
+            app:destination="@id/addMealFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_foodsFragment"
+            app:destination="@id/foodsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
+        <argument
+            android:name="user"
+            app:argType="com.meetozan.caloriecounter.User" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.meetozan.caloriecounter.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" >
+        <argument
+            android:name="user"
+            app:argType="com.meetozan.caloriecounter.User" />
+    </activity>
+</navigation>

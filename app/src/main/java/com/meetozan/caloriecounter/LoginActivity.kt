@@ -24,6 +24,10 @@ class LoginActivity : AppCompatActivity() {
     private val auth = Firebase.auth
     private lateinit var binding: ActivityLoginBinding
 
+    override fun onStart() {
+        super.onStart()
+        checkLogged()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
@@ -92,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnSuccessListener {
-                            db.document(auth.currentUser?.uid.toString()).set(user)
+                            db.document(user.email).set(user)
                             checkLogged()
                             Toast.makeText(this@LoginActivity, "Welcome ${user.name}", Toast.LENGTH_SHORT).show()
                         }.await()
@@ -106,11 +110,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkLogged() {
-        if (auth.currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        if (Firebase.auth.currentUser != null) {
+            Firebase.auth.currentUser!!.reload()
+            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
             finish()
         } else {
-            auth.signOut()
+            //
         }
     }
 }
