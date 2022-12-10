@@ -1,10 +1,10 @@
 package com.meetozan.caloriecounter
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         checkLogged()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.etLoginEmail.editText?.text.toString()
             val password = binding.etLoginPassword.editText?.text.toString()
 
-            loginUser(email,password)
+            loginUser(email, password)
         }
 
         binding.tvRegister.setOnClickListener {
@@ -76,14 +77,15 @@ class LoginActivity : AppCompatActivity() {
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnSuccessListener {
                             checkLogged()
-                            Toast.makeText(this@LoginActivity, "Welcome Again", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginActivity, "Welcome Again", Toast.LENGTH_SHORT)
+                                .show()
                         }
                         .addOnFailureListener {
-                            Toast.makeText(this@LoginActivity,it.message,Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@LoginActivity, it.message, Toast.LENGTH_LONG).show()
                         }.await()
-                }catch (e:Exception){
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(this@LoginActivity,e.message,Toast.LENGTH_LONG).show()
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@LoginActivity, e.message, Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -98,7 +100,11 @@ class LoginActivity : AppCompatActivity() {
                         .addOnSuccessListener {
                             db.document(user.email).set(user)
                             checkLogged()
-                            Toast.makeText(this@LoginActivity, "Welcome ${user.name}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Welcome ${user.name}",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }.await()
                 } catch (e: java.lang.Exception) {
                     withContext(Dispatchers.Main) {
@@ -110,9 +116,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkLogged() {
-        if (Firebase.auth.currentUser != null) {
-            Firebase.auth.currentUser!!.reload()
-            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+        val user = Firebase.auth.currentUser
+        if (user != null) {
+            user.reload()
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
             finish()
         } else {
             //

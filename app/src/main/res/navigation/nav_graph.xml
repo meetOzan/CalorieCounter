@@ -28,7 +28,7 @@
         android:id="@+id/mainFragment"
         android:name="com.meetozan.caloriecounter.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_addMealFragment"
             app:destination="@id/addMealFragment" />
@@ -42,16 +42,8 @@
             android:id="@+id/action_mainFragment_to_leaderboardFragment"
             app:destination="@id/leaderboardFragment" />
         <argument
-            android:name="user"
-            app:argType="com.meetozan.caloriecounter.User" />
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="com.meetozan.caloriecounter.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" >
-        <argument
-            android:name="user"
-            app:argType="com.meetozan.caloriecounter.User" />
-    </activity>
 </navigation>

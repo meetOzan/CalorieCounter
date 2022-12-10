@@ -62,7 +62,7 @@
             android:layout_marginBottom="20dp"
             android:layout_weight="3"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -74,10 +74,11 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAddMeal"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -113,6 +114,7 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardCalendar"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="5dp"
@@ -158,6 +160,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFoods"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="5dp"
@@ -199,10 +202,11 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardLeaderboard"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -241,7 +245,7 @@
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
