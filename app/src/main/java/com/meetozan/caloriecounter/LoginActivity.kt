@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.ActivityLoginBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

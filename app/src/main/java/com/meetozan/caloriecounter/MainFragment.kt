@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.FragmentMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
 
@@ -58,19 +53,12 @@ class MainFragment : Fragment() {
     }
 
     private fun readName() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                db.document(auth.currentUser?.email.toString())
-                    .get()
-                    .addOnSuccessListener {
-                        val user = it.toObject<User>()
-                        binding.txtName.text = user?.name.toString()
-                    }.await()
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
-                }
+        db.document(auth.currentUser?.email.toString())
+            .get()
+            .addOnSuccessListener {
+                val user = it.toObject<User>()
+                binding.txtName.text = user?.name.toString()
+
             }
-        }
     }
 }

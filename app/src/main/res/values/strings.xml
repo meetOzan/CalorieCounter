@@ -15,4 +15,6 @@
     <string name="foods">Foods</string>
     <string name="add_meal">Add Meal</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="protein">Protein</string>
+    <string name="prt">Pro</string>
 </resources>

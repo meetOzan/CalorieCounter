@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter
+package com.meetozan.caloriecounter.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
