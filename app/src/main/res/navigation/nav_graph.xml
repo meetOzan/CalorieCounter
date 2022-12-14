@@ -6,27 +6,27 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/addMealFragment"
-        android:name="com.meetozan.caloriecounter.AddMealFragment"
+        android:name="com.meetozan.caloriecounter.fragments.AddMealFragment"
         android:label="fragment_add_meal"
         tools:layout="@layout/fragment_add_meal" />
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.meetozan.caloriecounter.CalendarFragment"
+        android:name="com.meetozan.caloriecounter.fragments.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/foodsFragment"
-        android:name="com.meetozan.caloriecounter.FoodsFragment"
+        android:name="com.meetozan.caloriecounter.fragments.FoodsFragment"
         android:label="fragment_foods"
         tools:layout="@layout/fragment_foods" />
     <fragment
         android:id="@+id/leaderboardFragment"
-        android:name="com.meetozan.caloriecounter.LeaderboardFragment"
+        android:name="com.meetozan.caloriecounter.fragments.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.meetozan.caloriecounter.MainFragment"
+        android:name="com.meetozan.caloriecounter.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -37,7 +37,8 @@
             app:destination="@id/calendarFragment" />
         <action
             android:id="@+id/action_mainFragment_to_foodsFragment"
-            app:destination="@id/foodsFragment" />
+            app:destination="@id/foodsFragment"
+            app:enterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_mainFragment_to_leaderboardFragment"
             app:destination="@id/leaderboardFragment" />

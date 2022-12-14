@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter
+package com.meetozan.caloriecounter.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.meetozan.caloriecounter.R
 import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    private val db = Firebase.firestore.collection("users")
+    private val dbUser = Firebase.firestore.collection("users")
     private lateinit var binding: FragmentMainBinding
     private lateinit var auth: FirebaseAuth
 
@@ -53,7 +54,7 @@ class MainFragment : Fragment() {
     }
 
     private fun readName() {
-        db.document(auth.currentUser?.email.toString())
+        dbUser.document(auth.currentUser?.email.toString())
             .get()
             .addOnSuccessListener {
                 val user = it.toObject<User>()
