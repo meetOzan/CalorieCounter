@@ -16,4 +16,6 @@
     <color name="secondaryDarkColor">#00600f</color>
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#efebe9</color>
+    <color name="gray">#FCBFBFBF</color>
+
 </resources>

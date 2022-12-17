@@ -16,8 +16,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/top_background"
             android:backgroundTint="@color/primaryColor"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/background" />
+            android:contentDescription="@string/background"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -61,9 +61,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
-            android:layout_weight="3"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -100,8 +99,8 @@
                             android:layout_height="80dp"
                             android:layout_margin="20dp"
                             android:background="@drawable/ic_add_24"
-                            android:padding="25dp"
-                            android:contentDescription="@string/add_meal" />
+                            android:contentDescription="@string/add_meal"
+                            android:padding="25dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -120,7 +119,7 @@
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -141,8 +140,8 @@
                             android:layout_height="80dp"
                             android:layout_margin="20dp"
                             android:background="@drawable/ic_baseline_calendar_month_24"
-                            android:padding="25dp"
-                            android:contentDescription="@string/calendar" />
+                            android:contentDescription="@string/calendar"
+                            android:padding="25dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -190,8 +189,8 @@
                             android:layout_margin="20dp"
                             android:background="@drawable/ic_food_bank_24"
                             android:backgroundTint="@color/black"
-                            android:padding="25dp"
-                            android:contentDescription="@string/foods" />
+                            android:contentDescription="@string/foods"
+                            android:padding="25dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -210,7 +209,7 @@
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="5dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -231,8 +230,8 @@
                             android:layout_height="80dp"
                             android:layout_margin="20dp"
                             android:background="@drawable/ic_leaderboard_24"
-                            android:padding="25dp"
-                            android:contentDescription="@string/calendar" />
+                            android:contentDescription="@string/calendar"
+                            android:padding="25dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -245,36 +244,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
-
-
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/topBackground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-
-            <com.google.android.material.tabs.TabLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primaryLightColor">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/ic_dashboard_24" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/ic_person_24" />
-            </com.google.android.material.tabs.TabLayout>
-        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

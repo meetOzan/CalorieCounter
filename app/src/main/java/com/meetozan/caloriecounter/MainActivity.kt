@@ -2,6 +2,9 @@ package com.meetozan.caloriecounter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,5 +12,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        bottomBar()
+    }
+
+    private fun bottomBar() {
+        val bottomBar = findViewById<BottomNavigationView>(R.id.bottom_bar)
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        NavigationUI.setupWithNavController(
+            bottomBar,
+            navHostFragment.navController
+        )
     }
 }

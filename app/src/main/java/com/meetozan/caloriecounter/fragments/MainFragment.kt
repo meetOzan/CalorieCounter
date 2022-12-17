@@ -32,7 +32,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-
         readName()
 
         binding.cardAddMeal.setOnClickListener {
@@ -59,7 +58,6 @@ class MainFragment : Fragment() {
             .addOnSuccessListener {
                 val user = it.toObject<User>()
                 binding.txtName.text = user?.name.toString()
-
             }
     }
 }
