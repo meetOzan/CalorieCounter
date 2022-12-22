@@ -25,7 +25,7 @@ class FoodsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ):View {
+    ): View {
         binding = FragmentFoodsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,10 +33,15 @@ class FoodsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        rv = binding.rvFood
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv.layoutManager = linearLayoutManager
+
         getFood()
     }
 
-    private fun getFood(){
+    private fun getFood() {
         dbFood.addSnapshotListener { querySnapshot, firestoreException ->
             firestoreException?.let {
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
@@ -48,11 +53,6 @@ class FoodsFragment : Fragment() {
                     val food = document.toObject<Food>()
                     foodList.add(food)
                 }
-                rv = binding.rvFood
-                val linearLayoutManager = LinearLayoutManager(requireContext())
-                linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-                rv.layoutManager = linearLayoutManager
-
                 adapter = FoodAdapter(foodList)
                 rv.adapter = adapter
             }

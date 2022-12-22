@@ -30,4 +30,8 @@
     <string name="calorie_goal">Calorie Goal</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="settings">Settings</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_surname">Enter Surname</string>
+    <string name="submit">Submit</string>
 </resources>
