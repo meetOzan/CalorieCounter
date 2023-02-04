@@ -1,16 +1,17 @@
-package com.meetozan.caloriecounter.fragments
+package com.meetozan.caloriecounter.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.meetozan.caloriecounter.R
+import com.meetozan.caloriecounter.ui.main.profile.UserViewModel
 import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.FragmentMainBinding
 
@@ -19,6 +20,7 @@ class MainFragment : Fragment() {
     private val dbUser = Firebase.firestore.collection("users")
     private lateinit var binding: FragmentMainBinding
     private lateinit var auth: FirebaseAuth
+    private val viewModel by lazy { UserViewModel() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,32 +34,22 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-        readName()
 
-        binding.cardAddMeal.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_addMealFragment)
-        }
-
-        binding.cardCalendar.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_calendarFragment)
-        }
-
-        binding.cardFoods.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_foodsFragment)
-        }
-
-        binding.cardLeaderboard.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_leaderboardFragment)
-        }
-
-    }
-
-    private fun readName() {
         dbUser.document(auth.currentUser?.email.toString())
             .get()
             .addOnSuccessListener {
                 val user = it.toObject<User>()
-                binding.txtName.text = user?.name.toString()
+                if (user?.calorieGoal == -1) {
+                    findNavController().navigate(R.id.action_mainFragment_to_viewPagerFragment)
+                }
             }
+
+        observer()
+    }
+
+    private fun observer() {
+        viewModel.userInfo.observe(viewLifecycleOwner) {
+            binding.txtName.text = it.name
+        }
     }
 }

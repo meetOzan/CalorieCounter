@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter
+package com.meetozan.caloriecounter.ui.main.food
 
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -31,7 +31,6 @@ class FoodAdapter(private val foodList: List<Food>) :
             .centerCrop()
             .into(holder.foodCardBinding.cardImageFood)
 
-
         holder.foodCardBinding.btnDown.setOnClickListener {
             if (holder.foodCardBinding.expandedLayout.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(
@@ -58,7 +57,5 @@ class FoodAdapter(private val foodList: List<Food>) :
             }
         }
     }
-
     override fun getItemCount(): Int = foodList.size
-
 }

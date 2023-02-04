@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter
+package com.meetozan.caloriecounter.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.meetozan.caloriecounter.MainActivity
+import com.meetozan.caloriecounter.R
 import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.ActivityLoginBinding
 import kotlinx.coroutines.CoroutineScope
@@ -49,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
             val btnRegister = view.findViewById<Button>(R.id.btnRegister)
 
             btnRegister.setOnClickListener {
-
                 val etName =
                     view.findViewById<TextInputLayout>(R.id.etName).editText?.text.toString()
                 val etSurname =

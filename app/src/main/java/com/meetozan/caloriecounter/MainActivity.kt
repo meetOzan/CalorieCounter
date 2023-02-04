@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun bottomBar() {
         val bottomBar = findViewById<BottomNavigationView>(R.id.bottom_bar)
+        bottomBar.background = null
+        bottomBar.menu.getItem(2).isEnabled = false
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
