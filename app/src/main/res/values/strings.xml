@@ -34,4 +34,13 @@
     <string name="enter_name">Enter Name</string>
     <string name="enter_surname">Enter Surname</string>
     <string name="submit">Submit</string>
+    <string name="goal">Goal</string>
+    <string name="screen1_text">You can follow your diet process and look at the calories of the food you will eat. And completely free…</string>
+    <string name="welcome_to_caloriecounter">Welcome to CalorieCounter.</string>
+    <string name="next">Next</string>
+    <string name="trust_the_process">Trust the process…</string>
+    <string name="screen2Text">You can update height, weight from this application. You can determine and follow the daily calorie amount. You can better manage your program</string>
+    <string name="secondScreenTitle">Firstly enter your daily calorie goal</string>
+    <string name="done">Done</string>
+    <string name="kcal">kcal</string>
 </resources>

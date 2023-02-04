@@ -12,7 +12,7 @@
             android:id="@+id/txtEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="monospace"
             android:text="@string/edit_profile"
             android:textColor="@color/primaryDarkColor"
@@ -68,19 +68,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etEditMail"
+            android:id="@+id/etEditWeight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
-            android:clickable="false"
-            android:focusable="false"
             android:focusableInTouchMode="false"
+            android:hint="@string/weight"
             android:maxLines="1"
             android:text=""
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/etEditHeight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etEditSurname">
 
@@ -88,48 +87,72 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:cursorVisible="false"
-                android:inputType="none"
+                android:inputType="number"
                 android:textColorHint="@color/primaryDarkColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etEditPassword"
+            android:id="@+id/etEditGoal"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            android:hint="@string/enter_password"
+            android:layout_marginTop="8dp"
+            android:hint="@string/calorie_goal"
             android:maxLines="1"
             android:text=""
-            app:endIconMode="password_toggle"
-            app:endIconTint="@color/primaryDarkColor"
             app:errorEnabled="true"
             app:hintTextColor="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etEditMail">
+            app:layout_constraintEnd_toStartOf="@+id/etEditHeight"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toEndOf="@+id/etEditWeight"
+            app:layout_constraintTop_toBottomOf="@id/etEditHeight">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:cursorVisible="false"
-                android:inputType="numberPassword"
+                android:inputType="number"
                 android:textColorHint="@color/primaryDarkColor" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etEditHeight"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:hint="@string/height"
+            android:maxLines="1"
+            android:text=""
+            app:errorEnabled="true"
+            app:hintTextColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etEditWeight"
+            app:layout_constraintTop_toBottomOf="@id/etEditSurname">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cursorVisible="false"
+                android:inputType="number"
+                android:textColorHint="@color/primaryDarkColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btnEditProfile"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_margin="36dp"
+            android:layout_margin="24dp"
             android:text="@string/submit"
             android:textColor="@color/secondaryTextColor"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etEditPassword" />
+            app:layout_constraintTop_toBottomOf="@id/etEditGoal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

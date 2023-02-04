@@ -6,27 +6,22 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/addMealFragment"
-        android:name="com.meetozan.caloriecounter.fragments.AddMealFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.addmeal.AddMealFragment"
         android:label="fragment_add_meal"
         tools:layout="@layout/fragment_add_meal" />
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.meetozan.caloriecounter.fragments.CalendarFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.calendar.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/foodsFragment"
-        android:name="com.meetozan.caloriecounter.fragments.FoodsFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.food.FoodsFragment"
         android:label="fragment_foods"
         tools:layout="@layout/fragment_foods" />
     <fragment
-        android:id="@+id/leaderboardFragment"
-        android:name="com.meetozan.caloriecounter.fragments.LeaderboardFragment"
-        android:label="fragment_leaderboard"
-        tools:layout="@layout/fragment_leaderboard" />
-    <fragment
         android:id="@+id/mainFragment"
-        android:name="com.meetozan.caloriecounter.fragments.MainFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -39,9 +34,6 @@
             android:id="@+id/action_mainFragment_to_foodsFragment"
             app:destination="@id/foodsFragment"
             app:enterAnim="@android:anim/fade_in" />
-        <action
-            android:id="@+id/action_mainFragment_to_leaderboardFragment"
-            app:destination="@id/leaderboardFragment" />
         <argument
             android:name="email"
             app:argType="string"
@@ -49,10 +41,22 @@
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.meetozan.caloriecounter.fragments.ProfileFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.viewpager.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

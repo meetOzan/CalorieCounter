@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter.fragments
+package com.meetozan.caloriecounter.ui.main.food
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.meetozan.caloriecounter.FoodAdapter
 import com.meetozan.caloriecounter.data.Food
 import com.meetozan.caloriecounter.databinding.FragmentFoodsBinding
 
 class FoodsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodsBinding
-    var dbFood = Firebase.firestore.collection("food")
+    private var dbFood = Firebase.firestore.collection("food")
     private lateinit var rv: RecyclerView
     private lateinit var adapter: FoodAdapter
 

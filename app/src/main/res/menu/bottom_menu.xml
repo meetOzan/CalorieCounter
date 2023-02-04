@@ -5,8 +5,24 @@
         android:id="@+id/mainFragment"
         android:icon="@drawable/ic_dashboard_24"
         android:title="@string/home" />
+
+    <item
+        android:id="@+id/foodsFragment"
+        android:icon="@drawable/ic_food_bank_24"
+        android:title="@string/foods" />
+
+    <item
+        android:id="@+id/viewHolder"
+        android:title="" />
+
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:title="@string/calendar" />
+
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person_24"
         android:title="@string/profile" />
+
 </menu>

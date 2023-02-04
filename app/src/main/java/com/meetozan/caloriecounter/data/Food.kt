@@ -35,7 +35,6 @@ data class Food(
                 null
             }
         }
-
         private const val TAG = "User"
     }
 }
