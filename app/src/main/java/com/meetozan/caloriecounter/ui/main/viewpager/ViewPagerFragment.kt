@@ -35,6 +35,5 @@ class ViewPagerFragment : Fragment() {
             ViewPagerAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
         binding.viewpager.adapter = adapter
-
     }
 }

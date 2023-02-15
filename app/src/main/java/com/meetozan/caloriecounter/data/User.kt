@@ -13,7 +13,8 @@ data class User(
     val email: String = "",
     val height: String = "",
     val weight: String = "",
-    val calorieGoal : Int = -1
+    val currentCalorie : Int = 0,
+    val calorieGoal : Int = 0
 ) : Parcelable {
 
     companion object {
@@ -24,8 +25,9 @@ data class User(
                 val surname = getString("surname").toString()
                 val height = getString("height").toString()
                 val weight = getString("weight").toString()
+                val currentCalorie = get("currentCalorie") as Int
                 val calorieGoal = get("calorieGoal") as Int
-                User(name, surname, email, height, weight,calorieGoal)
+                User(name, surname, email, height, weight,currentCalorie,calorieGoal)
             } catch (e: java.lang.Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 FirebaseCrashlytics.getInstance().log("Error converting user profile")

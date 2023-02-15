@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.MainFragment">
+    tools:context=".ui.main.main.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootView"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/top_background"
-            android:backgroundTint="@color/primaryColor"
+            android:backgroundTint="@color/primaryLightColor"
             android:contentDescription="@string/background"
             android:scaleType="centerCrop"
             tools:layout_editor_absoluteX="0dp"
@@ -49,11 +49,99 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif"
-                android:text="Good Morning"
+                android:fontFamily="@font/magra"
+                android:text="@string/hello"
                 android:textAlignment="center"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="24sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/currentCalorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:fontFamily="@font/magra"
+            android:text=""
+            android:textSize="32sp"
+            app:layout_constraintEnd_toStartOf="@id/slash"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <TextView
+            android:id="@+id/slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/magra"
+            android:text="@string/slash"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <TextView
+            android:id="@+id/goalCalorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:fontFamily="@font/magra"
+            android:text=""
+            android:textColor="@color/primaryTextColor"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/slash"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <TextView
+            android:id="@+id/txtTodaySummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/magra"
+            android:text="@string/today_s_summary"
+            android:textColor="@color/secondaryDarkColor"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slash" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtTodaySummary"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginVertical="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/txtTodaySummary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/empty_image"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:alpha="0.5"
+                android:src="@drawable/box"
+                android:contentDescription="@string/empty_box" />
+
+            <TextView
+                android:id="@+id/emptyMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                android:text="@string/nothing_here"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/magra"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

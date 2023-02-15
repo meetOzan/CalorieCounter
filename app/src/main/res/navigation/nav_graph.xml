@@ -8,7 +8,11 @@
         android:id="@+id/addMealFragment"
         android:name="com.meetozan.caloriecounter.ui.main.addmeal.AddMealFragment"
         android:label="fragment_add_meal"
-        tools:layout="@layout/fragment_add_meal" />
+        tools:layout="@layout/fragment_add_meal" >
+        <action
+            android:id="@+id/action_addMealFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.meetozan.caloriecounter.ui.main.calendar.CalendarFragment"
@@ -21,7 +25,7 @@
         tools:layout="@layout/fragment_foods" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.meetozan.caloriecounter.ui.main.MainFragment"
+        android:name="com.meetozan.caloriecounter.ui.main.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action

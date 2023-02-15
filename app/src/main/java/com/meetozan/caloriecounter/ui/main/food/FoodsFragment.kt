@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import com.meetozan.caloriecounter.data.Food
 import com.meetozan.caloriecounter.databinding.FragmentFoodsBinding
 
 class FoodsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodsBinding
-    private var dbFood = Firebase.firestore.collection("food")
     private lateinit var rv: RecyclerView
     private lateinit var adapter: FoodAdapter
+    private val foodViewModel by lazy { FoodViewModel(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,24 +32,13 @@ class FoodsFragment : Fragment() {
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         rv.layoutManager = linearLayoutManager
 
-        getFood()
+        foodObserver()
     }
 
-    private fun getFood() {
-        dbFood.addSnapshotListener { querySnapshot, firestoreException ->
-            firestoreException?.let {
-                Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                return@addSnapshotListener
-            }
-            querySnapshot?.let {
-                val foodList: ArrayList<Food> = ArrayList()
-                for (document in it) {
-                    val food = document.toObject<Food>()
-                    foodList.add(food)
-                }
-                adapter = FoodAdapter(foodList)
-                rv.adapter = adapter
-            }
+    private fun foodObserver() {
+        foodViewModel.foodList.observe(viewLifecycleOwner) { list ->
+            adapter = FoodAdapter(list)
+            rv.adapter = adapter
         }
     }
 }

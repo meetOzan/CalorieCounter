@@ -43,4 +43,18 @@
     <string name="secondScreenTitle">Firstly enter your daily calorie goal</string>
     <string name="done">Done</string>
     <string name="kcal">kcal</string>
+    <string name="calorie_calendar">Calorie Calendar</string>
+    <string name="total_calorie">Total Calorie</string>
+    <string name="nextday">nextDay</string>
+    <string name="the_before_day">The before day</string>
+    <string name="hello">Hello</string>
+    <string name="slash">/</string>
+    <string name="today_s_summary">Today\'s Summary</string>
+    <string name="nothing_here">Nothing here today!</string>
+    <string name="add_daily_calorie">Add Daily Calorie</string>
+    <string name="minus">minus</string>
+    <string name="plus">plus</string>
+    <string name="eat">Eat!!</string>
+    <string name="_0">0</string>
+    <string name="empty_box">empty_box</string>
 </resources>

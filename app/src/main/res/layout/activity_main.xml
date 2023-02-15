@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_add_24"
-            android:backgroundTint="@color/secondaryColor"
             app:layout_anchor="@id/bottomAppBar" />
 
 

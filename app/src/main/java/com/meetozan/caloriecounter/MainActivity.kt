@@ -2,9 +2,13 @@ package com.meetozan.caloriecounter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.meetozan.caloriecounter.ui.main.addmeal.AddMealFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +16,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
+            supportFragmentManager.commit {
+                replace<AddMealFragment>(R.id.fragmentContainerView)
+                setReorderingAllowed(true)
+                addToBackStack("replacement")
+            }
+        }
         bottomBar()
     }
 

@@ -11,18 +11,19 @@
 
         <TextView
             android:id="@+id/tvFood"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/magra"
             android:text="@string/how_many_calories"
             android:textColor="@color/primaryDarkColor"
+            android:gravity="center"
+            android:foregroundGravity="top"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFood"
@@ -35,7 +36,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvFood" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -31,12 +31,24 @@ class UserViewModel : ViewModel() {
             }
     }
 
-    fun setCalorieData(calorie: Int) {
+    fun setSingleData(data: String, path: String) {
         db.collection("users").document(auth.currentUser?.email.toString())
             .update(
                 mapOf(
-                    ("calorieGoal" to calorie)
+                    (path to Integer.parseInt(data))
                 )
             )
     }
+
+    fun eatFood(date: String, foodName: String, hashMap: HashMap<String, Any>) {
+        db.collection("users").document(auth.currentUser?.email.toString())
+            .collection(date).document(foodName)
+            .set(hashMap)
+    }
+
+    fun vomitFood(date: String, foodName: String) {
+        db.collection("users").document(auth.currentUser?.email.toString())
+            .collection(date).document(foodName).delete()
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter.ui.main
+package com.meetozan.caloriecounter.ui.main.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,16 +11,16 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.meetozan.caloriecounter.R
-import com.meetozan.caloriecounter.ui.main.profile.UserViewModel
 import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.FragmentMainBinding
+import com.meetozan.caloriecounter.ui.main.profile.UserViewModel
 
 class MainFragment : Fragment() {
 
     private val dbUser = Firebase.firestore.collection("users")
     private lateinit var binding: FragmentMainBinding
     private lateinit var auth: FirebaseAuth
-    private val viewModel by lazy { UserViewModel() }
+    private val userViewModel by lazy { UserViewModel() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +44,14 @@ class MainFragment : Fragment() {
                 }
             }
 
-        observer()
+        userObserver()
     }
 
-    private fun observer() {
-        viewModel.userInfo.observe(viewLifecycleOwner) {
+    private fun userObserver() {
+        userViewModel.userInfo.observe(viewLifecycleOwner) {
             binding.txtName.text = it.name
+            binding.goalCalorie.text = it.calorieGoal.toString()
+            binding.currentCalorie.text = it.currentCalorie.toString()
         }
     }
 }
