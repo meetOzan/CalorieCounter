@@ -18,13 +18,13 @@
         android:layout_height="75dp"
         android:layout_marginHorizontal="12dp"
         android:layout_marginVertical="4dp"
+        android:background="#00FFFFFF"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
         app:strokeColor="@color/gray"
-        app:strokeWidth="1dp"
-        android:background="#00FFFFFF">
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{calendarFoodCard.name}"
                 android:fontFamily="@font/magra"
+                android:text="@{calendarFoodCard.name}"
                 android:textColor="@color/secondaryDarkColor"
                 android:textSize="33sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,15 +44,42 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txtX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
+                android:fontFamily="@font/magra"
+                android:text="@string/x"
+                android:textColor="@color/gray"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/calendarCardFoodMany"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/calendarCardFoodMany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="130dp"
+                android:fontFamily="monospace"
+                android:text="@{calendarFoodCard.many}"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/calendarCardFoodCalorie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="108dp"
-                android:text="@{calendarFoodCard.calorie}"
+                android:layout_marginEnd="6dp"
                 android:fontFamily="monospace"
+                android:text="@{calendarFoodCard.calorie}"
                 android:textColor="@color/primaryDarkColor"
                 android:textSize="28sp"
-                android:layout_marginEnd="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/calendarCardTxtKcal"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,13 +88,13 @@
                 android:id="@+id/calendarCardTxtKcal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/kcal"
-                android:fontFamily="@font/magra"
                 android:layout_marginStart="6dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/magra"
+                android:text="@string/kcal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="24dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

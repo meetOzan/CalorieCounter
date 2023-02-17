@@ -6,16 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.meetozan.caloriecounter.data.Food
 import com.meetozan.caloriecounter.databinding.AddMealCardBinding
-import com.meetozan.caloriecounter.ui.main.food.FoodViewModel
 import com.meetozan.caloriecounter.ui.main.profile.UserViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class AddMealAdapter(private var addMealList: List<Food>,context: Context) :
+class AddMealAdapter(private var addMealList: List<Food>, context: Context) :
     RecyclerView.Adapter<AddMealAdapter.ViewHolder>() {
 
     private val userViewModel by lazy { UserViewModel() }
-    private val foodViewModel by lazy { FoodViewModel(context) }
+    private val addMealViewModel by lazy { AddMealViewModel(context) }
 
     val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
     val current = LocalDate.now().format(formatter)
@@ -45,18 +44,17 @@ class AddMealAdapter(private var addMealList: List<Food>,context: Context) :
                 many += 1
                 binding.tvAddMealCardMany.text = many.toString()
 
-                val hashMap = hashMapOf<String, Any>(
+                val _hashMap = hashMapOf<String, Any>(
                     "name" to addMeal.name,
                     "calorie" to addMeal.calorie,
                     "url" to addMeal.url,
                     "protein" to addMeal.protein,
                     "fat" to addMeal.fat,
                     "carbohydrate" to addMeal.carbohydrate,
-                    "many" to Integer.parseInt(addMeal.many) + 1
+                    "many" to many.toString()
                 )
 
-                userViewModel.eatFood(current, addMeal.name, hashMap)
-
+                userViewModel.eatFood(current, addMeal.name, _hashMap)
             }
         }
 
@@ -67,22 +65,21 @@ class AddMealAdapter(private var addMealList: List<Food>,context: Context) :
                 binding.tvAddMealCardMany.text = many.toString()
             }
 
-            val hashMap = hashMapOf<String, Any>(
+            val _hashMap = hashMapOf<String, Any>(
                 "name" to addMeal.name,
                 "calorie" to addMeal.calorie,
                 "url" to addMeal.url,
                 "protein" to addMeal.protein,
                 "fat" to addMeal.fat,
                 "carbohydrate" to addMeal.carbohydrate,
-                "many" to many
+                "many" to many.toString()
             )
 
             if (many > 0) {
-                userViewModel.eatFood(current, addMeal.name, hashMap)
+                userViewModel.eatFood(current, addMeal.name, _hashMap)
             } else {
                 userViewModel.vomitFood(current, addMeal.name)
             }
-
         }
     }
 }

@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import com.meetozan.caloriecounter.ui.login.LoginActivity
 import com.meetozan.caloriecounter.R
 import com.meetozan.caloriecounter.databinding.FragmentProfileBinding
+import com.meetozan.caloriecounter.ui.main.main.MainViewModel
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 
 class ProfileFragment : Fragment() {
@@ -27,7 +28,9 @@ class ProfileFragment : Fragment() {
     private val dbUser = Firebase.firestore.collection("users")
     private lateinit var binding: FragmentProfileBinding
     private lateinit var auth: FirebaseAuth
-    private val viewModel by lazy { UserViewModel() }
+    private val userViewModel by lazy { UserViewModel() }
+    private val mainViewModel by lazy { MainViewModel(requireContext()) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,20 +46,6 @@ class ProfileFragment : Fragment() {
         auth = Firebase.auth
         observer()
 
-        binding.circularProgressBar.apply {
-            setProgressWithAnimation(65f, 1000)
-
-            progressMax = 200f
-            progressBarColorStart = R.color.primaryColor
-            progressBarColorEnd = Color.GREEN
-            progressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM
-
-            progressBarWidth = 7f
-            backgroundProgressBarWidth = 3f
-
-            roundBorder = true
-            progressDirection = CircularProgressBar.ProgressDirection.TO_RIGHT
-        }
         binding.imageLogout.setOnClickListener {
             auth.signOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
@@ -65,12 +54,39 @@ class ProfileFragment : Fragment() {
     }
 
     private fun observer() {
-        viewModel.userInfo.observe(viewLifecycleOwner) { user ->
+        userViewModel.userInfo.observe(viewLifecycleOwner) { user ->
 
             binding.profileName.text = user.name
             binding.profileWeight.text = user.weight
             binding.profileHeight.text = user.height
             binding.profileCalorieProgress.text = user.calorieGoal.toString()
+
+            mainViewModel.mainList.observe(viewLifecycleOwner){
+
+                var totalCalorie = 0
+
+                for (index in it.indices) {
+                    totalCalorie += Integer.parseInt(it[index].calorie) * Integer.parseInt(it[index].many)
+                }
+
+                binding.circularProgressBar.apply {
+                    setProgressWithAnimation(totalCalorie.toFloat(), 1000)
+
+                    progressMax = user.calorieGoal.toString().toFloat()
+                    progressBarColorStart = R.color.primaryColor
+                    progressBarColorEnd = Color.RED
+                    progressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM
+
+                    progressBarWidth = 7f
+                    backgroundProgressBarWidth = 3f
+
+                    roundBorder = true
+                    progressDirection = CircularProgressBar.ProgressDirection.TO_RIGHT
+                }
+
+                binding.profileCurrentCalorie.text = totalCalorie.toString()
+            }
+
 
             binding.btnEditProfile.setOnClickListener {
                 val dialog =

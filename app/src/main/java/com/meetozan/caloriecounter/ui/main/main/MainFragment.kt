@@ -1,11 +1,15 @@
 package com.meetozan.caloriecounter.ui.main.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -20,7 +24,10 @@ class MainFragment : Fragment() {
     private val dbUser = Firebase.firestore.collection("users")
     private lateinit var binding: FragmentMainBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var rv: RecyclerView
+    private lateinit var adapter: MainAdapter
     private val userViewModel by lazy { UserViewModel() }
+    private val mainViewModel by lazy { MainViewModel(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +42,11 @@ class MainFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        rv = binding.recyclerView
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv.layoutManager = linearLayoutManager
+
         dbUser.document(auth.currentUser?.email.toString())
             .get()
             .addOnSuccessListener {
@@ -48,10 +60,33 @@ class MainFragment : Fragment() {
     }
 
     private fun userObserver() {
-        userViewModel.userInfo.observe(viewLifecycleOwner) {
-            binding.txtName.text = it.name
-            binding.goalCalorie.text = it.calorieGoal.toString()
-            binding.currentCalorie.text = it.currentCalorie.toString()
+        userViewModel.userInfo.observe(viewLifecycleOwner) { user ->
+            binding.txtName.text = user.name
+            binding.goalCalorie.text = user.calorieGoal.toString()
+            binding.currentCalorie.text = user.currentCalorie.toString()
+
+            mainViewModel.mainList.observe(viewLifecycleOwner) {
+                adapter = MainAdapter(it)
+                rv.adapter = adapter
+
+                var totalCalorie = 0
+
+                for (index in it.indices) {
+                    totalCalorie += Integer.parseInt(it[index].calorie) * Integer.parseInt(it[index].many)
+                }
+
+                binding.currentCalorie.text = totalCalorie.toString()
+
+                if (totalCalorie > Integer.parseInt(binding.goalCalorie.text.toString())) {
+                    binding.currentCalorie.setTextColor(Color.RED)
+                }
+                if (rv.isNotEmpty()) {
+                    binding.nothingLinearLayout.visibility = View.VISIBLE
+                } else {
+                    binding.nothingLinearLayout.visibility = View.INVISIBLE
+                }
+
+            }
         }
     }
 }

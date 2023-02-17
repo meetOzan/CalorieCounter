@@ -21,7 +21,7 @@ class UserViewModel : ViewModel() {
         getUserInfo()
     }
 
-    fun getUserInfo() {
+    private fun getUserInfo() {
         db.collection("users").document(auth.currentUser?.email.toString())
             .get()
             .addOnSuccessListener {
@@ -31,7 +31,7 @@ class UserViewModel : ViewModel() {
             }
     }
 
-    fun setSingleData(data: String, path: String) {
+    fun updateSingleData(data: String, path: String) {
         db.collection("users").document(auth.currentUser?.email.toString())
             .update(
                 mapOf(
@@ -40,7 +40,7 @@ class UserViewModel : ViewModel() {
             )
     }
 
-    fun eatFood(date: String, foodName: String, hashMap: HashMap<String, Any>) {
+   fun eatFood(date: String, foodName: String, hashMap: HashMap<String, Any>) {
         db.collection("users").document(auth.currentUser?.email.toString())
             .collection(date).document(foodName)
             .set(hashMap)

@@ -16,12 +16,17 @@ class CalendarFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var rv: RecyclerView
+    private lateinit var calendarViewModel: CalendarViewModel
+    private lateinit var adapter: CalendarAdapter
+    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    val current = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
+        binding.txtCalendar.text = current.format(formatter)
         return binding.root
     }
 
@@ -33,24 +38,58 @@ class CalendarFragment : Fragment() {
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         rv.layoutManager = linearLayoutManager
 
-        //binding.txtTotalCalorie.setText(adapter.totalCalorie)
+        var minusClickCounter = 1
+        var plusClickCounter = 1
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val current = LocalDate.now()
-        binding.txtCalendar.text = current.format(formatter)
-
-        var clickCounter = 1
+        if (binding.txtCalendar.text.toString() == current.format(formatter).toString()) {
+            calendarViewModel =
+                CalendarViewModel(requireContext(), binding.txtCalendar.text.toString())
+            observer()
+        }
 
         binding.imageLeft.setOnClickListener {
-            if (clickCounter < 6) {
+            if (minusClickCounter < 3) {
                 binding.txtCalendar.text =
-                    current.minusDays(clickCounter.toLong()).format(formatter).toString()
-                clickCounter += 1
+                    current.minusDays(minusClickCounter.toLong()).format(formatter).toString()
+                minusClickCounter += 1
+                plusClickCounter -= 1
+                calendarViewModel =
+                    CalendarViewModel(requireContext(), binding.txtCalendar.text.toString())
+                observer()
             } else {
-                Toast.makeText(requireContext(), "You can see only 5 days ago", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "You can only see 2 days ago", Toast.LENGTH_SHORT).show()
             }
         }
 
+        binding.imageRight.setOnClickListener {
+            if (binding.txtCalendar.text.toString() != current.format(formatter).toString()) {
+                binding.txtCalendar.text =
+                    current.plusDays(plusClickCounter.toLong()).format(formatter).toString()
+                plusClickCounter += 1
+                minusClickCounter -= 1
+            } else {
+                Toast.makeText(context, "Tomorrow is tomorrow", Toast.LENGTH_SHORT).show()
+            }
+            calendarViewModel =
+                CalendarViewModel(requireContext(), binding.txtCalendar.text.toString())
+            observer()
+        }
+    }
+
+    private fun observer() {
+        calendarViewModel.calendarList.observe(viewLifecycleOwner) {
+            adapter = CalendarAdapter(it)
+            rv.adapter = adapter
+            binding.txtTotalCalorie.text = adapter.totalCalorie.toString()
+
+
+            var totalCalorie = 0
+
+            for (index in it.indices) {
+                totalCalorie += Integer.parseInt(it[index].calorie) * Integer.parseInt(it[index].many)
+            }
+
+            binding.txtTotalCalorie.text = totalCalorie.toString()
+        }
     }
 }

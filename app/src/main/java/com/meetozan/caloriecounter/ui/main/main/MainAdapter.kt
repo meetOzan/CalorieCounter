@@ -20,11 +20,10 @@ class MainAdapter(private val mainFoodList: List<Food>) :
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = mainFoodList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val mainAdapter = mainFoodList[position]
         holder.mainCardBinding.calendarFoodCard = mainAdapter
     }
-
 }

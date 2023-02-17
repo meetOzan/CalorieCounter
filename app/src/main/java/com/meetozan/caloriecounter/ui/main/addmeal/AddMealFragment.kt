@@ -13,6 +13,7 @@ import com.meetozan.caloriecounter.ui.main.food.FoodViewModel
 class AddMealFragment : Fragment() {
 
     private lateinit var binding: FragmentAddMealBinding
+    private val addMealViewModel by lazy { AddMealViewModel(requireContext()) }
     private val foodViewModel by lazy { FoodViewModel(requireContext()) }
     private lateinit var adapter: AddMealAdapter
     private lateinit var rv: RecyclerView

@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter.ui.main.calendar
+package com.meetozan.caloriecounter.ui.main.addmeal
 
 import android.content.Context
 import android.widget.Toast
@@ -9,23 +9,27 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.meetozan.caloriecounter.data.Food
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class CalendarViewModel(context: Context, current: String) : ViewModel() {
+class AddMealViewModel(context: Context) : ViewModel() {
+
 
     private var auth = Firebase.auth
     private var dbUsers = Firebase.firestore.collection("users")
 
-    private val _calendarList = MutableLiveData<List<Food>>()
-    val calendarList: MutableLiveData<List<Food>>
-        get() = _calendarList
+    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    val current = LocalDate.now().format(formatter)
 
-    var totalCalorie = 0
+    private var _addMealList = MutableLiveData<List<Food>>()
+    val addMealList: MutableLiveData<List<Food>>
+        get() = _addMealList
 
     init {
-        getCalendar(context, current)
+        getAddedMeal(context)
     }
 
-    private fun getCalendar(context: Context, current: String) {
+    private fun getAddedMeal(context: Context) {
         dbUsers.document(auth.currentUser?.email.toString())
             .collection(current)
             .addSnapshotListener { querySnapshot, firestoreException ->
@@ -34,12 +38,11 @@ class CalendarViewModel(context: Context, current: String) : ViewModel() {
                     return@addSnapshotListener
                 }
                 querySnapshot?.let {
-                    val calendarList: ArrayList<Food> = ArrayList()
+                    val addedMealList: ArrayList<Food> = ArrayList()
                     for (document in it) {
                         val addedMeal = document.toObject<Food>()
-                        calendarList.add(addedMeal)
-                        totalCalorie += totalCalorie + Integer.parseInt(addedMeal.calorie)
-                        _calendarList.postValue(calendarList)
+                        addedMealList.add(addedMeal)
+                        _addMealList.postValue(addedMealList)
                     }
                 }
             }
