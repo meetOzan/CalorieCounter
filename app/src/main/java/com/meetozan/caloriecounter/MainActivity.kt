@@ -1,11 +1,13 @@
 package com.meetozan.caloriecounter
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.meetozan.caloriecounter.ui.main.addmeal.AddMealFragment
@@ -38,5 +40,18 @@ class MainActivity : AppCompatActivity() {
             bottomBar,
             navHostFragment.navController
         )
+
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.viewPagerFragment) {
+                bottomAppBar.visibility = View.GONE
+                fab.visibility = View.GONE
+            } else {
+                bottomAppBar.visibility = View.VISIBLE
+                fab.visibility = View.VISIBLE
+            }
+        }
     }
 }

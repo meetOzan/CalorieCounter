@@ -30,7 +30,7 @@ class ThirdScreenFragment : Fragment() {
         binding.thirdNext.setOnClickListener {
             if (binding.etCalorieGoal.text.isNotEmpty()) {
                 val calorieGoal = Integer.parseInt(binding.etCalorieGoal.text.toString())
-                viewModel.updateSingleData(calorieGoal.toString(),"calorie")
+                viewModel.updateSingleData(calorieGoal.toString(),"calorieGoal")
                 it.findNavController().navigate(R.id.action_viewPagerFragment_to_mainFragment)
             } else {
                 Toast.makeText(requireContext(), "Enter calorie goal first.", Toast.LENGTH_SHORT)

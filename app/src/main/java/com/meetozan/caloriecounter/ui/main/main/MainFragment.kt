@@ -51,7 +51,7 @@ class MainFragment : Fragment() {
             .get()
             .addOnSuccessListener {
                 val user = it.toObject<User>()
-                if (user?.calorieGoal == -1) {
+                if (user?.calorieGoal == 0) {
                     findNavController().navigate(R.id.action_mainFragment_to_viewPagerFragment)
                 }
             }
