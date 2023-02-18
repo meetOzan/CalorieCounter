@@ -80,12 +80,12 @@ class MainFragment : Fragment() {
                 if (totalCalorie > Integer.parseInt(binding.goalCalorie.text.toString())) {
                     binding.currentCalorie.setTextColor(Color.RED)
                 }
+
                 if (rv.isNotEmpty()) {
                     binding.nothingLinearLayout.visibility = View.VISIBLE
                 } else {
                     binding.nothingLinearLayout.visibility = View.INVISIBLE
                 }
-
             }
         }
     }
