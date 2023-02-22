@@ -9,20 +9,20 @@
 
         <TextView
             android:id="@+id/LoginText"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_marginTop="48dp"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/magra"
             android:text="@string/welcome"
             android:textColor="@color/primaryDarkColor"
-            android:textSize="36sp"
+            android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etLoginEmail"
+            android:id="@+id/loginEmailLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,6 +37,7 @@
             app:layout_constraintTop_toTopOf="@+id/LoginText">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLoginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
@@ -45,7 +46,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etLoginPassword"
+            android:id="@+id/loginPasswordLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,9 +59,10 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/etLoginEmail">
+            app:layout_constraintTop_toTopOf="@+id/loginEmailLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="numberPassword"
@@ -81,7 +83,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etLoginPassword"
+            app:layout_constraintTop_toBottomOf="@+id/loginPasswordLayout"
             tools:ignore="TextContrastCheck" />
 
         <TextView

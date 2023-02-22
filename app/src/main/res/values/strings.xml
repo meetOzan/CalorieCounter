@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">CalorieCounter</string>
-    <string name="welcome">Welcome</string>
     <string name="e_mail">E-Mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -58,4 +57,8 @@
     <string name="_0">0</string>
     <string name="empty_box">empty_box</string>
     <string name="x">x</string>
+    <string name="profilepic">profilePic</string>
+    <string name="profilepicbackground">profilePicBackGround</string>
+    <string name="exit">exit</string>
+    <string name="welcome">Welcome to CalorieCounter</string>
 </resources>

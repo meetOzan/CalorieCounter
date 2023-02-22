@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_add_meal" >
         <action
             android:id="@+id/action_addMealFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -30,7 +32,9 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_addMealFragment"
-            app:destination="@id/addMealFragment" />
+            app:destination="@id/addMealFragment"
+            app:popUpTo="@id/addMealFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />

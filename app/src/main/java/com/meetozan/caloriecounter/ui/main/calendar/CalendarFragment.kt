@@ -18,8 +18,9 @@ class CalendarFragment : Fragment() {
     private lateinit var rv: RecyclerView
     private lateinit var calendarViewModel: CalendarViewModel
     private lateinit var adapter: CalendarAdapter
-    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-    val current = LocalDate.now()
+
+    private val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    private val current = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +50,11 @@ class CalendarFragment : Fragment() {
 
         binding.imageLeft.setOnClickListener {
             if (minusClickCounter < 3) {
+                rv = binding.recyclerView
+                val linearLayoutManager = LinearLayoutManager(requireContext())
+                linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+                rv.layoutManager = linearLayoutManager
+
                 binding.txtCalendar.text =
                     current.minusDays(minusClickCounter.toLong()).format(formatter).toString()
                 minusClickCounter += 1
@@ -56,6 +62,7 @@ class CalendarFragment : Fragment() {
                 calendarViewModel =
                     CalendarViewModel(requireContext(), binding.txtCalendar.text.toString())
                 observer()
+
             } else {
                 Toast.makeText(context, "You can only see 2 days ago", Toast.LENGTH_SHORT).show()
             }
@@ -67,12 +74,11 @@ class CalendarFragment : Fragment() {
                     current.plusDays(plusClickCounter.toLong()).format(formatter).toString()
                 plusClickCounter += 1
                 minusClickCounter -= 1
+                calendarViewModel =
+                    CalendarViewModel(requireContext(), binding.txtCalendar.text.toString())
             } else {
                 Toast.makeText(context, "Tomorrow is tomorrow", Toast.LENGTH_SHORT).show()
             }
-            calendarViewModel =
-                CalendarViewModel(requireContext(), binding.txtCalendar.text.toString())
-            observer()
         }
     }
 
@@ -82,6 +88,13 @@ class CalendarFragment : Fragment() {
             rv.adapter = adapter
             binding.txtTotalCalorie.text = adapter.totalCalorie.toString()
 
+            if (it.isNotEmpty()) {
+                binding.nothingLinearLayout.visibility = View.INVISIBLE
+                rv.visibility = View.VISIBLE
+            } else {
+                binding.nothingLinearLayout.visibility = View.INVISIBLE
+                rv.visibility = View.VISIBLE
+            }
 
             var totalCalorie = 0
 

@@ -15,21 +15,20 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.meetozan.caloriecounter.ui.login.LoginActivity
 import com.meetozan.caloriecounter.R
 import com.meetozan.caloriecounter.databinding.FragmentProfileBinding
+import com.meetozan.caloriecounter.ui.login.LoginActivity
 import com.meetozan.caloriecounter.ui.main.main.MainViewModel
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 
 class ProfileFragment : Fragment() {
 
-    private val dbUser = Firebase.firestore.collection("users")
     private lateinit var binding: FragmentProfileBinding
     private lateinit var auth: FirebaseAuth
     private val userViewModel by lazy { UserViewModel() }
     private val mainViewModel by lazy { MainViewModel(requireContext()) }
+    private lateinit var updateHashMap: HashMap<String, Any>
 
 
     override fun onCreateView(
@@ -61,7 +60,7 @@ class ProfileFragment : Fragment() {
             binding.profileHeight.text = user.height
             binding.profileCalorieProgress.text = user.calorieGoal.toString()
 
-            mainViewModel.mainList.observe(viewLifecycleOwner){
+            mainViewModel.mainList.observe(viewLifecycleOwner) {
 
                 var totalCalorie = 0
 
@@ -73,9 +72,9 @@ class ProfileFragment : Fragment() {
                     setProgressWithAnimation(totalCalorie.toFloat(), 1000)
 
                     progressMax = user.calorieGoal.toString().toFloat()
-                    progressBarColorStart = R.color.primaryColor
+                    progressBarColorStart = Color.GREEN
                     progressBarColorEnd = Color.RED
-                    progressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM
+                    progressBarColorDirection = CircularProgressBar.GradientDirection.RIGHT_TO_LEFT
 
                     progressBarWidth = 7f
                     backgroundProgressBarWidth = 3f
@@ -107,22 +106,25 @@ class ProfileFragment : Fragment() {
                 etGoal.editText?.setText(user.calorieGoal.toString())
 
                 dialog.findViewById<Button>(R.id.btnEditProfile).setOnClickListener {
-                    if (etSurname.isNotEmpty() && etHeight.isNotEmpty() && etWeight.isNotEmpty() && etGoal.isNotEmpty())
-                        dbUser.document(auth.currentUser?.email.toString())
-                            .update(
-                                mapOf(
-                                    "name" to etName.editText?.text.toString(),
-                                    "surname" to etSurname.editText?.text.toString(),
-                                    "height" to etHeight.editText?.text.toString(),
-                                    "weight" to etWeight.editText?.text.toString(),
-                                    "calorieGoal" to Integer.parseInt(etGoal.editText?.text.toString())
-                                )
-                            )
-                            .addOnSuccessListener {
-                                Toast.makeText(context, "Updated!!", Toast.LENGTH_SHORT).show()
-                                builder.dismiss()
-                            } else {
-                        Toast.makeText(context, "Fill in the fields!!", Toast.LENGTH_SHORT).show()
+                    if (etSurname.isNotEmpty() && etHeight.isNotEmpty() && etWeight.isNotEmpty() && etGoal.isNotEmpty()) {
+                        updateHashMap = hashMapOf(
+                            "name" to etName.editText?.text.toString(),
+                            "surname" to etSurname.editText?.text.toString(),
+                            "height" to etHeight.editText?.text.toString(),
+                            "weight" to etWeight.editText?.text.toString(),
+                            "calorieGoal" to Integer.parseInt(etGoal.editText?.text.toString())
+                        )
+                        userViewModel.updateAllData(updateHashMap)
+                        builder.dismiss()
+                        Toast.makeText(
+                            requireContext(), "Updated!!!", Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "You have to fill all blanks",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.meetozan.caloriecounter
+package com.meetozan.caloriecounter.ui.main
 
 import android.os.Bundle
 import android.view.View
@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.meetozan.caloriecounter.R
 import com.meetozan.caloriecounter.ui.main.addmeal.AddMealFragment
 
 class MainActivity : AppCompatActivity() {

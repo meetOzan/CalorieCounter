@@ -35,6 +35,6 @@ data class Food(
                 null
             }
         }
-        private const val TAG = "User"
+        private const val TAG = "Food"
     }
 }

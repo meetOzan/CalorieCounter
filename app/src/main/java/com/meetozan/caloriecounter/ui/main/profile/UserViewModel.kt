@@ -31,6 +31,11 @@ class UserViewModel : ViewModel() {
             }
     }
 
+    fun updateAllData(hashMap: HashMap<String, Any>) {
+        db.collection("users").document(auth.currentUser?.email.toString())
+            .update(hashMap)
+    }
+
     fun updateSingleData(data: String, path: String) {
         db.collection("users").document(auth.currentUser?.email.toString())
             .update(
@@ -40,7 +45,7 @@ class UserViewModel : ViewModel() {
             )
     }
 
-   fun eatFood(date: String, foodName: String, hashMap: HashMap<String, Any>) {
+    fun eatFood(date: String, foodName: String, hashMap: HashMap<String, Any>) {
         db.collection("users").document(auth.currentUser?.email.toString())
             .collection(date).document(foodName)
             .set(hashMap)
@@ -50,5 +55,4 @@ class UserViewModel : ViewModel() {
         db.collection("users").document(auth.currentUser?.email.toString())
             .collection(date).document(foodName).delete()
     }
-
 }

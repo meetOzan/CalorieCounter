@@ -38,7 +38,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName"
-                    android:textColorHint="@color/primaryDarkColor" />
+                    android:textColorHint="@color/primaryDarkColor"
+                    android:maxLength="25" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -49,6 +50,7 @@
                 android:layout_marginHorizontal="48dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/surname"
+                android:maxLines="1"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName"
-                    android:textColorHint="@color/primaryDarkColor" />
+                    android:textColorHint="@color/primaryDarkColor"
+                    android:maxLength="25"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -70,7 +73,6 @@
                 android:layout_marginTop="8dp"
                 android:hint="@string/e_mail"
                 android:maxLines="1"
-                android:maxLength="70"
                 app:endIconTint="@color/secondaryColor"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +82,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/secondaryDarkColor" />
+                    android:textColorHint="@color/secondaryDarkColor"
+                    android:maxLength="60"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -103,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
+                    android:maxLength="40"
                     android:textColorHint="@color/secondaryDarkColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +118,6 @@
                 android:layout_marginTop="8dp"
                 android:hint="@string/height"
                 android:maxLines="1"
-                android:maxLength="3"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/etWeight"
@@ -124,7 +127,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:textColorHint="@color/secondaryDarkColor" />
+                    android:textColorHint="@color/secondaryDarkColor"
+                    android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -135,7 +139,6 @@
                 android:layout_marginTop="8dp"
                 android:hint="@string/weight"
                 android:maxLines="1"
-                android:maxLength="3"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toStartOf="@id/etHeight"
                 app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +148,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:textColorHint="@color/secondaryDarkColor" />
+                    android:textColorHint="@color/secondaryDarkColor"
+                    android:maxLength="3"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

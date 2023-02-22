@@ -28,7 +28,8 @@
                     android:background="@drawable/ic_circle_24"
                     android:backgroundTint="@color/primaryLightColor"
                     android:rotationX="50"
-                    app:layout_constraintBottom_toTopOf="@id/layoutProfile" />
+                    app:layout_constraintBottom_toTopOf="@id/layoutProfile"
+                    android:contentDescription="@string/background" />
 
                 <ImageView
                     android:id="@+id/imageLogout"
@@ -38,7 +39,8 @@
                     android:src="@drawable/ic_baseline_logout_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/secondaryColor" />
+                    app:tint="@color/secondaryColor"
+                    android:contentDescription="@string/exit" />
 
 
                 <ImageView
@@ -50,7 +52,8 @@
                     app:layout_constraintBottom_toTopOf="@id/profileName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btnEditProfile" />
+                    app:layout_constraintTop_toBottomOf="@id/btnEditProfile"
+                    android:contentDescription="@string/profilepicbackground" />
 
                 <ImageView
                     android:id="@+id/profilePic"
@@ -61,7 +64,8 @@
                     app:layout_constraintEnd_toEndOf="@id/circle"
                     app:layout_constraintStart_toStartOf="@id/circle"
                     app:layout_constraintTop_toTopOf="@id/circle"
-                    app:tint="@color/gray" />
+                    app:tint="@color/gray"
+                    android:contentDescription="@string/profilepic" />
 
                 <TextView
                     android:id="@+id/profileName"

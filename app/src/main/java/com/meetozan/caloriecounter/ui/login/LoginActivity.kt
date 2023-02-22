@@ -11,10 +11,10 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.meetozan.caloriecounter.MainActivity
 import com.meetozan.caloriecounter.R
 import com.meetozan.caloriecounter.data.User
 import com.meetozan.caloriecounter.databinding.ActivityLoginBinding
+import com.meetozan.caloriecounter.ui.main.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,8 +37,17 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         binding.btnLogin.setOnClickListener {
-            val email = binding.etLoginEmail.editText?.text.toString()
-            val password = binding.etLoginPassword.editText?.text.toString()
+            val email = binding.etLoginEmail.text.toString()
+            val password = binding.etLoginPassword.text.toString()
+
+            if (binding.etLoginEmail.text!!.isEmpty()) {
+                binding.loginEmailLayout.error = "Wrong E-Mail"
+            }
+
+            if (binding.etLoginPassword.text!!.isEmpty()) {
+                binding.loginPasswordLayout.error = "Wrong Password"
+                binding.loginPasswordLayout.isEndIconVisible = false
+            }
 
             loginUser(email, password)
         }
@@ -87,6 +96,9 @@ class LoginActivity : AppCompatActivity() {
                         }.await()
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
+                        binding.loginEmailLayout.error = "Wrong E-Mail"
+                        binding.loginPasswordLayout.error = "Wrong Password"
+                        binding.loginPasswordLayout.isEndIconVisible = false
                         Toast.makeText(this@LoginActivity, e.message, Toast.LENGTH_LONG).show()
                     }
                 }
